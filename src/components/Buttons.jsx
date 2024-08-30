@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
-//import satData from './components/satData.jsx'
+import satData from "./satData";
 
 const Buttons = ({ filterByType, setSat, displaySats }) => {
-  const handleFilterClick = (orbitType) => {
-    filterByType(orbitType);
-  };
-
-  const handleResetClick = () => {
-    setSat(null);
-    displaySats();
-  };
-
   return (
-    <div className="button-container">
-      <button onClick={() => handleFilterClick('LEO')}>Low Earth Orbit</button>
-      <button onClick={() => handleFilterClick('MEO')}>Medium Earth Orbit</button>
-      <button onClick={() => handleFilterClick('GEO')}>Geostationary Orbit</button>
-      <button onClick={handleResetClick}>All Orbits</button>
+    <div>
+      {displaySats.map((sat, id) => {
+        return (
+          <button onClick={() => filterByType(sat)} key={id}>
+            {sat} Orbit
+          </button>
+        );
+      })}
+      <button onClick={() => setSat(satData)}>All Orbits</button>
     </div>
-    
-  );
-};
+  )
+}
 
-export default Buttons;
+export default Buttons
 
